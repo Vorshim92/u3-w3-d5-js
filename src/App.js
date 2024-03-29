@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Sidebar from "./components/Sidebar";
+import Player from "./components/Player";
+import MainPage from "./components/MainPage";
+import { Container, Row, Col } from "react-bootstrap";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Container fluid>
+        <Row>
+          <Col className="col-2">
+            <Sidebar></Sidebar>
+          </Col>
+          <Col xs={12} md={9} className="offset-md-3 mainPage">
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+            </Routes>
+          </Col>
+        </Row>
+      </Container>
+      <Container fluid className="fixed-bottom bg-container pt-1">
+        <Player></Player>
+      </Container>
+    </BrowserRouter>
   );
 }
 
