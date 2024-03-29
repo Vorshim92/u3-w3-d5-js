@@ -12013,4 +12013,9 @@ ul {
   cursor: pointer;
 }
 
+.like-icon {
+  cursor: pointer;
+  width: 16px !important;
+}
+
 /*# sourceMappingURL=App.css.map */

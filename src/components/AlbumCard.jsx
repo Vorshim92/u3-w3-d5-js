@@ -21,11 +21,15 @@ const AlbumCard = ({ songInfo }) => {
     <>
       <Col className="text-center" id={songInfo.id}>
         <Image fluid src={songInfo.album.cover_medium} className="album-image" alt="track" onClick={handleClick} />
-        <p>
-          Track: "{songInfo.title.length < 16 ? songInfo.title : `${songInfo.title.substring(0, 16)}...`}"<br />
-          Artist: {songInfo.artist.name}
-        </p>
-        <span onClick={handleLikeClick}>{isLiked ? <img src="added.png" className="album-image" alt="Added" /> : <img src="add.png" className="album-image" alt="Add" />}</span>
+        <div className="d-flex align-items-center justify-content-center">
+          <p>
+            Track: "{songInfo.title.length < 16 ? songInfo.title : `${songInfo.title.substring(0, 16)}...`}"<br />
+            Artist: {songInfo.artist.name}
+          </p>
+          <span className="ms-2" onClick={handleLikeClick}>
+            {isLiked ? <img src="added.png" className="like-icon" alt="Added" /> : <img src="add.png" className="like-icon" alt="Add" />}
+          </span>
+        </div>
       </Col>
     </>
   );
