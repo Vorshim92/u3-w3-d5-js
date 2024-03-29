@@ -1,16 +1,31 @@
 import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { likedSongAction } from "../redux/actions";
+import React, { useState } from "react";
 
 const Player = () => {
   const selectedSong = useSelector((state) => state.selected.selectedSong);
   const dispatch = useDispatch();
   const likedSongs = useSelector((state) => state.liked.likedSongs);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleLikeClick = (e) => {
     e.stopPropagation();
     dispatch(likedSongAction(selectedSong.id));
   };
+
+  const handlePlayClick = () => {
+    const audioPlayer = document.getElementById("audio-player");
+
+    if (isPlaying === true) {
+      setIsPlaying(false);
+      audioPlayer.pause();
+    } else {
+      setIsPlaying(true);
+      audioPlayer.play();
+    }
+  };
+
   const isLiked = selectedSong && likedSongs.includes(selectedSong.id);
 
   return (
@@ -40,8 +55,8 @@ const Player = () => {
               <a href="#">
                 <img src="assets/playerbuttons/prev.png" alt="prev" />
               </a>
-              <a href="#">
-                <img src="assets/playerbuttons/play.png" alt="play" />
+              <a href="#" onClick={handlePlayClick}>
+                {isPlaying ? <img src="pause.png" alt="pause" /> : <img src="play.png" alt="play" />}
               </a>
               <a href="#">
                 <img src="assets/playerbuttons/next.png" alt="next" />
