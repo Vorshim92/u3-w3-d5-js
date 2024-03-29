@@ -1,7 +1,10 @@
-export const FETCH_RESULT = "FETCH_RESULT";
+export const FETCH_SEARCH = "FETCH_SEARCH";
+export const FETCH_ROCK = "FETCH_ROCK";
+export const FETCH_POP = "FETCH_POP";
+export const FETCH_HIP = "FETCH_HIP";
 
 // ACTION_1
-export const fetchResult = (query) => {
+export const fetchResult = (query, actionType) => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + query, {
@@ -16,7 +19,7 @@ export const fetchResult = (query) => {
         let { data } = await response.json();
 
         dispatch({
-          type: FETCH_RESULT,
+          type: actionType,
           payload: data,
         });
       } else {

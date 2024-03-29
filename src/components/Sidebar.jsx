@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { fetchResult } from "../redux/actions";
+import { fetchResult, FETCH_SEARCH } from "../redux/actions";
 
 const Sidebar = function () {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,7 +9,7 @@ const Sidebar = function () {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    dispatch(searchQuery);
+    dispatch(fetchResult(searchQuery, FETCH_SEARCH));
   };
 
   return (
