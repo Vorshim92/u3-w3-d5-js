@@ -1,11 +1,28 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Player = () => {
+  const selectedSong = useSelector((state) => state.selected.selectedSong);
+
   return (
     <Row className="h-100">
       <Col lg={{ span: 10, offset: 2 }}>
-        <Row className="h-100 flex-column justify-content-center align-items-center">
-          <Col xs={6} md={4} className="playerControls">
+        <div className="row h-100 flex justify-content-center align-items-center">
+          {!selectedSong ? (
+            <></>
+          ) : (
+            <>
+              <audio id="audio-player" src={selectedSong.preview}></audio>
+              <Col className="col-3 d-flex gap-3">
+                <img style={{ borderRadius: "5" }} src={selectedSong.album.cover_small} alt="cover" />
+                <div className="d-flex flex-column" style={{ color: "white" }}>
+                  <span>{selectedSong.title}</span>
+                  <span>{selectedSong.artist.name}</span>
+                </div>
+              </Col>
+            </>
+          )}
+          <div className="col-4 playerControls">
             <div className="d-flex">
               <a href="#">
                 <img src="assets/playerbuttons/shuffle.png" alt="shuffle" />
@@ -26,8 +43,8 @@ const Player = () => {
             <div className="progress mt-3">
               <div role="progressbar"></div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Col>
     </Row>
   );

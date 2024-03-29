@@ -30,3 +30,11 @@ export const fetchResult = (query, actionType) => {
     }
   };
 };
+
+export const SELECT_SONG = "SELECT_SONG";
+
+// Azione per selezionare una canzone
+export const selectSong = (songInfo) => ({
+  type: SELECT_SONG,
+  payload: songInfo,
+});
