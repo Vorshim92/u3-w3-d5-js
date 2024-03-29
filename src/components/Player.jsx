@@ -1,8 +1,17 @@
-import { Row, Col, Image } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { likedSongAction } from "../redux/actions";
 
 const Player = () => {
   const selectedSong = useSelector((state) => state.selected.selectedSong);
+  const dispatch = useDispatch();
+  const likedSongs = useSelector((state) => state.liked.likedSongs);
+
+  // const handleLikeClick = (e) => {
+  //   e.stopPropagation();
+  //   dispatch(likedSongAction(selectedSong.id));
+  // };
+  // const isLiked = likedSongs.includes(selectedSong.id);
 
   return (
     <Row className="h-100">
@@ -19,6 +28,7 @@ const Player = () => {
                   <span>{selectedSong.title}</span>
                   <span>{selectedSong.artist.name}</span>
                 </div>
+                {/* <span onClick={handleLikeClick}>{isLiked ? <img src="added.png" className="album-image" alt="Added" /> : <img src="add.png" className="album-image" alt="Add" />}</span> */}
               </Col>
             </>
           )}

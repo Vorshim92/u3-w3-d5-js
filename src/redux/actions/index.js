@@ -30,11 +30,19 @@ export const fetchResult = (query, actionType) => {
     }
   };
 };
+// Azione per selezionare una canzone
 
 export const SELECT_SONG = "SELECT_SONG";
 
-// Azione per selezionare una canzone
 export const selectSong = (songInfo) => ({
   type: SELECT_SONG,
   payload: songInfo,
+});
+// Azione per MI PIACE su una canzone
+
+export const LIKED_SONG = "LIKED_SONG";
+
+export const likedSongAction = (songId) => ({
+  type: LIKED_SONG,
+  payload: songId,
 });
