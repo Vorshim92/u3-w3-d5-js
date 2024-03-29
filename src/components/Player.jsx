@@ -55,7 +55,7 @@ const Player = () => {
               <a href="#">
                 <img src="assets/playerbuttons/prev.png" alt="prev" />
               </a>
-              <a href="#" onClick={handlePlayClick}>
+              <a href="#" onClick={selectedSong ? handlePlayClick : undefined}>
                 {isPlaying ? <img src="pause.png" alt="pause" /> : <img src="play.png" alt="play" />}
               </a>
               <a href="#">
