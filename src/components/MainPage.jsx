@@ -3,19 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AlbumCard from "./AlbumCard";
 import { useEffect } from "react";
-import { fetchResult, FETCH_ROCK, FETCH_POP, FETCH_HIP } from "../redux/actions";
+import { fetchResult, fetchSongsWrapper, FETCH_ROCK, FETCH_POP, FETCH_HIP, FETCH_SECTION } from "../redux/actions";
+import Section from "./SectionComponent";
 
 const MainPage = () => {
-  const rock = useSelector((state) => state.results.rock);
-  const pop = useSelector((state) => state.results.pop);
-  const hip = useSelector((state) => state.results.hip);
   const search = useSelector((state) => state.results.search);
+  const sections = useSelector((state) => state.results.sections);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchResult("rock", FETCH_ROCK));
-    dispatch(fetchResult("pop", FETCH_POP));
-    dispatch(fetchResult("hip", FETCH_HIP));
+    dispatch(fetchSongsWrapper("rock"));
+    dispatch(fetchSongsWrapper("pop"));
+    dispatch(fetchSongsWrapper("hip"));
+    dispatch(fetchSongsWrapper("punk"));
+    dispatch(fetchSongsWrapper("classic"));
   }, []);
 
   return (
@@ -43,44 +45,9 @@ const MainPage = () => {
           </Col>
         )}
       </Row>
-      <Row>
-        <Col xs={10}>
-          <div id="rock">
-            <h2>Rock Classics</h2>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="rockSection">
-              {rock.map((singleAlbum) => (
-                <AlbumCard key={singleAlbum.id} songInfo={singleAlbum} />
-              ))}
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={10}>
-          <div id="pop">
-            <h2>Pop Culture</h2>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="popSection">
-              {" "}
-              {pop.map((singleAlbum) => (
-                <AlbumCard key={singleAlbum.id} songInfo={singleAlbum} />
-              ))}
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={10}>
-          <div id="hiphop">
-            <h2>#HipHop</h2>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="hipHopSection">
-              {" "}
-              {hip.map((singleAlbum) => (
-                <AlbumCard key={singleAlbum.id} songInfo={singleAlbum} />
-              ))}
-            </div>
-          </div>
-        </Col>
-      </Row>
+      {Object.keys(sections).map((label, i) => (
+        <Section label={label} key={i}></Section>
+      ))}
     </>
   );
 };

@@ -1,10 +1,8 @@
-import { FETCH_SEARCH, FETCH_ROCK, FETCH_POP, FETCH_HIP } from "../actions";
+import { FETCH_SEARCH, FETCH_ROCK, FETCH_POP, FETCH_HIP, FETCH_SECTION } from "../actions";
 
 const initialState = {
   search: [],
-  rock: [],
-  pop: [],
-  hip: [],
+  sections: {},
 };
 
 const resultReducer = function (state = initialState, action) {
@@ -14,20 +12,14 @@ const resultReducer = function (state = initialState, action) {
         ...state,
         search: action.payload,
       };
-    case FETCH_ROCK:
+    case FETCH_SECTION:
+      const { label, items } = action.payload;
+      const sections = { ...state.sections };
+      sections[label] = items;
+
       return {
         ...state,
-        rock: action.payload,
-      };
-    case FETCH_POP:
-      return {
-        ...state,
-        pop: action.payload,
-      };
-    case FETCH_HIP:
-      return {
-        ...state,
-        hip: action.payload,
+        sections,
       };
     default:
       return state;
