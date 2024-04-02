@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AlbumCard from "./AlbumCard";
 import { useEffect } from "react";
-import { fetchResult, fetchSongsWrapper, FETCH_ROCK, FETCH_POP, FETCH_HIP, FETCH_SECTION } from "../redux/actions";
+import { fetchSongsWrapper } from "../redux/actions";
 import Section from "./SectionComponent";
 
 const MainPage = () => {

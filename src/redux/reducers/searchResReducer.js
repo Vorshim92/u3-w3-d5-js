@@ -1,4 +1,4 @@
-import { FETCH_SEARCH, FETCH_ROCK, FETCH_POP, FETCH_HIP, FETCH_SECTION } from "../actions";
+import { FETCH_SEARCH, FETCH_SECTION } from "../actions";
 
 const initialState = {
   search: [],

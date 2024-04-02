@@ -1,7 +1,4 @@
 export const FETCH_SEARCH = "FETCH_SEARCH";
-export const FETCH_ROCK = "FETCH_ROCK";
-export const FETCH_POP = "FETCH_POP";
-export const FETCH_HIP = "FETCH_HIP";
 export const FETCH_SECTION = "FETCH_SECTION";
 
 // ACTION_1
